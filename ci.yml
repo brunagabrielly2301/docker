@@ -3,3 +3,22 @@
    branches: ["main", "master"]
   pull_request:
    branches: ["main","master"]
+ jobs:
+  testes-a-validacao:
+ runs-on: ubuntu-latest
+ -name: baixar codigo-fonte
+ uses: actions/checkout@v4
+ -name: configurar Node.js
+ uses: actions/setup-node@v4
+ with:
+ node-version: '20'
+ cache: 'npm'
+ -name: instalar dependencias
+ run: npm ci
+ -name: executar linter
+ run: npm run lint 
+ -name: executar testes automatizados
+ run: npm test 
+ -name: verificacao de seguranca de dependencias(sast)
+ run: npm audit --audit-level=high
+
