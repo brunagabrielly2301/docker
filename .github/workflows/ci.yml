@@ -20,7 +20,7 @@ jobs:
           cache: 'npm'
 
       - name: Instalar dependencias
-        run: npm install
+  run: npm install --legacy-peer-deps
 
       - name: Executar linter
         run: npm run lint
