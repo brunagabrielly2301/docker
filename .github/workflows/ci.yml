@@ -2,13 +2,14 @@ name: CI e Testes
 
 on:
   push:
-    branches: ["main", "master"]
+    branches: [ "main" ]
   pull_request:
-    branches: ["main", "master"]
+    branches: [ "main" ]
 
 jobs:
   testes-e-validacao:
     runs-on: ubuntu-latest
+
     steps:
       - name: Baixar codigo-fonte
         uses: actions/checkout@v4
@@ -23,7 +24,9 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Executar linter
-        run: npm run lint
+        run: |
+          chmod +x node_modules/.bin/*
+          npm run lint
 
       - name: Executar testes automatizados
         run: npm test
